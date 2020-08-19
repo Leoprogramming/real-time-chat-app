@@ -78,7 +78,33 @@ const Chat = () => {
   });
   return (
     <Container>
-      <Messages user="Mary" />
+      <Messages user={state.user} />
+      <Row>
+        <Col xs={2} style={{ padding: 0 }}>
+          <FormInput
+            label="User"
+            value={state.user}
+            onChange={(evt) =>
+              stateSet({
+                ...state,
+                user: evt.target.value,
+              })
+            }
+          />
+        </Col>
+        <Col xs={8}>
+          <FormInput
+            label="Content"
+            value={state.content}
+            onChange={(evt) =>
+              stateSet({
+                ...state,
+                content: evt.target.value,
+              })
+            }
+          />
+        </Col>
+      </Row>
     </Container>
   );
 };
