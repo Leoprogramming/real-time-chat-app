@@ -6,9 +6,10 @@ import {
   useQuery,
   gql,
 } from "@apollo/client";
+import { Container } from "shards-react";
 
 const client = new ApolloClient({
-  uri: "https://localhost:4000/",
+  uri: "http://localhost:4000/",
   cache: new InMemoryCache(),
 });
 
@@ -22,11 +23,31 @@ const GET_MESSAGES = gql`
   }
 `;
 
+const Messages = ({ user }) => {
+  const { data } = useQuery(GET_MESSAGES);
+  if (!data) {
+    return null;
+  }
+  return (
+    <>
+      {data.messages.map(({ id, user: messageUser, content }) => (
+        <div
+          style={{
+            display: "flex",
+            justifyContent: user === messageUser ? "flex-end" : "flex-start",
+            paddingBottom: "1em",
+          }}
+        ></div>
+      ))}
+    </>
+  );
+};
+
 const Chat = () => {
   return (
-    <div>
+    <Container>
       <Messages user="Jack" />
-    </div>
+    </Container>
   );
 };
 
