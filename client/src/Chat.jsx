@@ -76,6 +76,14 @@ const Chat = () => {
     user: "Jack",
     content: "",
   });
+  const onSend = () => {
+    if (state.content.length > 0) {
+    }
+    stateSet({
+      ...state,
+      content: "",
+    });
+  };
   return (
     <Container>
       <Messages user={state.user} />
@@ -102,7 +110,15 @@ const Chat = () => {
                 content: evt.target.value,
               })
             }
+            onKeyUp={(evt) => {
+              if (evt.keyCodeUp == 13) {
+                onSend();
+              }
+            }}
           />
+        </Col>
+        <Col xs={2} style={{ padding: 0 }}>
+          <Button onClick={() => onsuspend()}>Send</Button>
         </Col>
       </Row>
     </Container>
