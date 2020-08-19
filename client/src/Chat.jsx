@@ -37,7 +37,19 @@ const Messages = ({ user }) => {
             justifyContent: user === messageUser ? "flex-end" : "flex-start",
             paddingBottom: "1em",
           }}
-        ></div>
+        >
+          <div
+            style={{
+              background: user === messageUser ? "#58bf56" : "#e5e6ea",
+              color: user === messageUser ? "white" : "black",
+              padding: "1em",
+              borderRadius: "1em",
+              maxWidth: "60%",
+            }}
+          >
+            {content}
+          </div>
+        </div>
       ))}
     </>
   );
