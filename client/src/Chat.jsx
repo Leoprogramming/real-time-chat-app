@@ -34,14 +34,29 @@ const Messages = ({ user }) => {
         <div
           style={{
             display: "flex",
-            justifyContent: user === messageUser ? "flex-end" : "flex-start",
+            justifyContent: user == messageUser ? "flex-end" : "flex-start",
             paddingBottom: "1em",
           }}
         >
+          {user !== messageUser && (
+            <div
+              style={{
+                height: 50,
+                width: 50,
+                marginRight: "0.5em",
+                border: "2px solid #e5e6ea",
+                borderRadius: 25,
+                textAlign: "center",
+                fontSize: "18pt",
+              }}
+            >
+              {messageUser.slice(0, 2).toUpperCase()}
+            </div>
+          )}
           <div
             style={{
-              background: user === messageUser ? "#58bf56" : "#e5e6ea",
-              color: user === messageUser ? "white" : "black",
+              background: user == messageUser ? "#58bf56" : "#e5e6ea",
+              color: user == messageUser ? "white" : "black",
               padding: "1em",
               borderRadius: "1em",
               maxWidth: "60%",
@@ -58,7 +73,7 @@ const Messages = ({ user }) => {
 const Chat = () => {
   return (
     <Container>
-      <Messages user="Jack" />
+      <Messages user="Mary" />
     </Container>
   );
 };
