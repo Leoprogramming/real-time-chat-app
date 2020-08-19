@@ -25,8 +25,8 @@ const GET_MESSAGES = gql`
 `;
 
 const POST_MESSAGE = gql`
-  mutation {
-    postMessage(user: #user, content: #content)
+  mutation($user: String!, $content: String!) {
+    postMessage(user: $user, content: $content)
   }
 `;
 
@@ -83,8 +83,13 @@ const Chat = () => {
     user: "Jack",
     content: "",
   });
+  const [postMessage] = useMutation(POST_MESSAGE);
+
   const onSend = () => {
     if (state.content.length > 0) {
+      postMessage({
+        variables: state,
+      });
     }
     stateSet({
       ...state,
@@ -118,14 +123,14 @@ const Chat = () => {
               })
             }
             onKeyUp={(evt) => {
-              if (evt.keyCodeUp == 13) {
+              if (evt.keyCode === 13) {
                 onSend();
               }
             }}
           />
         </Col>
         <Col xs={2} style={{ padding: 0 }}>
-          <Button onClick={() => onsuspend()}>Send</Button>
+          <Button onClick={() => onSend()}>Send</Button>
         </Col>
       </Row>
     </Container>
