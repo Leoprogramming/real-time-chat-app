@@ -4,6 +4,7 @@ import {
   InMemoryCache,
   ApolloProvider,
   useQuery,
+  useMutation,
   gql,
 } from "@apollo/client";
 import { Container, Row, Col, FormInput, Button } from "shards-react";
@@ -20,6 +21,12 @@ const GET_MESSAGES = gql`
       content
       user
     }
+  }
+`;
+
+const POST_MESSAGE = gql`
+  mutation {
+    postMessage(user: #user, content: #content)
   }
 `;
 
