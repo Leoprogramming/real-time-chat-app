@@ -6,7 +6,7 @@ import {
   useQuery,
   gql,
 } from "@apollo/client";
-import { Container } from "shards-react";
+import { Container, Row, Col, FormInput, Button } from "shards-react";
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/",
@@ -48,6 +48,7 @@ const Messages = ({ user }) => {
                 borderRadius: 25,
                 textAlign: "center",
                 fontSize: "18pt",
+                paddingTop: 5,
               }}
             >
               {messageUser.slice(0, 2).toUpperCase()}
@@ -71,6 +72,10 @@ const Messages = ({ user }) => {
 };
 
 const Chat = () => {
+  const [state, stateSet] = React.useState({
+    user: "Jack",
+    content: "",
+  });
   return (
     <Container>
       <Messages user="Mary" />
