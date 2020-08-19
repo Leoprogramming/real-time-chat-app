@@ -1,6 +1,26 @@
 const { GraphQLServer } = require("graphql-yoga");
 
-const server = new GraphQLServer();
+const messages = [];
+
+const typeDefs = `
+  type Message {
+    id: ID!
+    user: String!
+    content: String!
+  }
+
+  type Query {
+    messages: [Messages!]
+  }
+`;
+
+const resolvers = {
+  Query: {
+    messages: () => messages,
+  },
+};
+
+const server = new GraphQLServer({ typeDefs });
 server.start(({ port }) => {
   console.log(`Server started on http://localhost:{$port}/`);
 });
