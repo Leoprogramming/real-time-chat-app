@@ -10,7 +10,7 @@ const typeDefs = `
   }
 
   type Query {
-    messages: [Messages!]
+    messages: [Message!]
   }
 `;
 
@@ -20,7 +20,7 @@ const resolvers = {
   },
 };
 
-const server = new GraphQLServer({ typeDefs });
+const server = new GraphQLServer({ typeDefs, resolvers });
 server.start(({ port }) => {
   console.log(`Server started on http://localhost:{$port}/`);
 });
