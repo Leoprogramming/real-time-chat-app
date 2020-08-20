@@ -10,14 +10,15 @@ import {
 import { WebSocketLink } from "@apollo/client/link/ws";
 import { Container, Row, Col, FormInput, Button } from "shards-react";
 
-const wsLink = new WebSocketLink({
-  uri: `ws://localhost:5000/`,
+const link = new WebSocketLink({
+  uri: `ws://localhost:4000/`,
   options: {
     reconnect: true,
   },
 });
 
 const client = new ApolloClient({
+  link,
   uri: "http://localhost:4000/",
   cache: new InMemoryCache(),
 });
