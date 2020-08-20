@@ -7,7 +7,15 @@ import {
   useMutation,
   gql,
 } from "@apollo/client";
+import { WebSocketLink } from "@apollo/client/link/ws";
 import { Container, Row, Col, FormInput, Button } from "shards-react";
+
+const wsLink = new WebSocketLink({
+  uri: `ws://localhost:5000/`,
+  options: {
+    reconnect: true,
+  },
+});
 
 const client = new ApolloClient({
   uri: "http://localhost:4000/",
