@@ -11,7 +11,7 @@ module.exports = {
   },
 
   devServer: {
-    port: 8080,
+    port: 8081,
   },
 
   module: {
@@ -35,7 +35,9 @@ module.exports = {
       name: "home",
       library: { type: "var", name: "home" },
       filename: "remoteEntry.js",
-      remotes: {},
+      remotes: {
+        chat: "chat",
+      },
       exposes: {},
       shared: require("./package.json").dependencies,
     }),

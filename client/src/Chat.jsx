@@ -44,13 +44,14 @@ const Messages = ({ user }) => {
   if (!data) {
     return null;
   }
+
   return (
     <>
       {data.messages.map(({ id, user: messageUser, content }) => (
         <div
           style={{
             display: "flex",
-            justifyContent: user == messageUser ? "flex-end" : "flex-start",
+            justifyContent: user === messageUser ? "flex-end" : "flex-start",
             paddingBottom: "1em",
           }}
         >
@@ -72,8 +73,8 @@ const Messages = ({ user }) => {
           )}
           <div
             style={{
-              background: user == messageUser ? "#58bf56" : "#e5e6ea",
-              color: user == messageUser ? "white" : "black",
+              background: user === messageUser ? "blue" : "#e5e6ea",
+              color: user === messageUser ? "white" : "black",
               padding: "1em",
               borderRadius: "1em",
               maxWidth: "60%",
@@ -86,14 +87,12 @@ const Messages = ({ user }) => {
     </>
   );
 };
-
 const Chat = () => {
   const [state, stateSet] = React.useState({
     user: "Jack",
     content: "",
   });
   const [postMessage] = useMutation(POST_MESSAGE);
-
   const onSend = () => {
     if (state.content.length > 0) {
       postMessage({
@@ -147,7 +146,6 @@ const Chat = () => {
     </Container>
   );
 };
-
 export default () => (
   <ApolloProvider client={client}>
     <Chat />
